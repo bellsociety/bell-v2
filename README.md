@@ -24,3 +24,10 @@ Clone the repository, then run:
 $ yarn
 $ yarn dev
 ```
+
+If there are issues installing packages, which seem out of place (beyond global installs), try:
+
+```bash
+rm yarn.lock
+yarn
+```
