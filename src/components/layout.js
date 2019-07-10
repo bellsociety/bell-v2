@@ -5,9 +5,8 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { useStaticQuery, graphql } from 'gatsby'
 import s from 'styled-components'
 
 import Header from './Header'
@@ -21,32 +20,40 @@ const ContentWrapper = s.div`
   width: 100%;
 `
 
-const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
+class Layout extends Component {
+  constructor(props) {
+    super(props)
 
-  return (
-    <>
-      <ContentWrapper>
-        <Header siteTitle={data.site.siteMetadata.title} />
+    this.state = { showNav: false }
 
-        <main>{children}</main>
-      </ContentWrapper>
+    this.toggleNav = this.toggleNav.bind(this)
+  }
 
-      <Nav />
+  toggleNav() {
+    const { showNav } = this.state
+    this.setState({ showNav: !showNav })
+  }
 
-      <Footer />
+  render() {
+    const { children } = this.props
+    const { showNav } = this.state
 
-      <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet"></link>
-    </>
-  )
+    return (
+      <>
+        <ContentWrapper>
+          <Header />
+
+          <main>{children}</main>
+        </ContentWrapper>
+
+        <Nav show={showNav} toggle={this.toggleNav} />
+
+        <Footer />
+
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet"></link>
+      </>
+    )
+  }
 }
 
 Layout.propTypes = {
