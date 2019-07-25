@@ -25,6 +25,7 @@ const SectionWrapper = s.div`
     padding: 5vh 0;
     display: flex;
     flex-direction: column;
+    padding-left: 80px;
 
     ${({ centerHorizontally }) => centerHorizontally && `
         text-align: center;

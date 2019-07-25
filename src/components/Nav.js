@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import s from 'styled-components'
 import { Link } from 'gatsby'
 
-import { BLACK, WHITE } from '../shared/colors'
+import { BLACK, WHITE, RED, BLUE, YELLOW } from '../shared/colors'
 
 const Bars = s.div`
     width: 48px;
@@ -17,7 +17,7 @@ const Bars = s.div`
 
 const Bar = s.span`
     width: 100%;
-    height: 6px;
+    height: 8px;
     display: block;
     background: ${BLACK};
     margin-bottom: 10px;
@@ -58,6 +58,21 @@ const MenuContent = s.div`
         margin: 8vh 0;
         font-weight: bold;
         text-decoration: none;
+        width: 70%;
+        text-align: right;
+        transition: all 0.4s ease;
+    }
+
+    a#about:hover {
+        color: ${RED};
+    }
+
+    a#members:hover {
+        color: ${BLUE};
+    }
+
+    a#news:hover {
+        color: ${YELLOW};
     }
 `
 
@@ -71,9 +86,9 @@ const Nav = ({ show, toggle }) => (
 
         <Menu show={show}>
             <MenuContent>
-                <Link to="/about">About</Link>
-                <Link to="/members">Members</Link>
-                <Link to="/news">In the news</Link>
+                <Link id="about" to="/">about</Link>
+                <Link id="members" to="/members">members</Link>
+                <Link id="news" to="/news">in the news</Link>
             </MenuContent>
         </Menu>
     </>

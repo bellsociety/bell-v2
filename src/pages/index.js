@@ -17,7 +17,7 @@ const HatImage = s.img`
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
-    
+
     <Section centerHorizontally centerVertically>
       <HatImage src={hat} alt="Hat" />
     </Section>
@@ -25,7 +25,6 @@ const IndexPage = () => (
     <Section>
       <Container>
         <h1>We are a tech and entrepreneurship society at the University of Pennsylvania</h1>
-
         <p>
           Founded in 2014, Bell brings together a diverse group of Penn seniors and promotes the exchange of ideas and shared experiences.
         </p>

@@ -9,7 +9,6 @@ import { Container } from './Container'
 const Wrapper = s.div`
   width: 100%;
   position: absolute;
-  background: ${WHITE};
   padding: 1rem 0;
 `
 
