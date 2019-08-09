@@ -6,7 +6,7 @@ import { Link } from 'gatsby'
 import { BLACK, WHITE, RED, BLUE, YELLOW } from '../shared/colors'
 
 const Bars = s.div`
-    width: 48px;
+    width: 30px;
     position: fixed;
     left: 1rem;
     top: 50%;
@@ -17,10 +17,10 @@ const Bars = s.div`
 
 const Bar = s.span`
     width: 100%;
-    height: 8px;
+    height: 4px;
     display: block;
     background: ${BLACK};
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 `
 
 const Menu = s.div`

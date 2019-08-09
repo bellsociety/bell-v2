@@ -25,7 +25,7 @@ const NewsPage = () => (
     <Section>
       <Container>
         <p>
-          List of our esteemed members' accomplishments here
+          coming soon
         </p>
       </Container>
     </Section>
