@@ -9,7 +9,7 @@ import { Container } from './Container'
 const Wrapper = s.div`
   width: 100%;
   position: absolute;
-  padding: 1rem 0;
+  padding: 2rem 0;
 `
 
 const Title = s.h1`
