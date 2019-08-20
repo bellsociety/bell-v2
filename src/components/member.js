@@ -3,18 +3,21 @@ import PropTypes from "prop-types"
 import React from "react"
 import s from 'styled-components'
 
-import { WHITE, BLACK, GRAY, RED } from '../shared/colors'
+import { WHITE, BLACK, GRAY, RED, BLUE } from '../shared/colors'
 import { Container } from './Container'
 
 const Wrapper = s.div`
-  width: 17rem;
-  margin: auto;
+  width: 24%;
+  min-width: 200px;
+  margin-left: 0px;
+  margin-top: 0px;
+  padding-right: 20px;
 `
 
 const MemberPhotoWrapper = s.div`
   max-width: 100%;
-  height: 14rem;
-  width: 17rem;
+  height: auto;
+  width: 100%;
   display: block;
   object-fit: cover;
   margin-bottom: 0.5rem;
@@ -22,8 +25,6 @@ const MemberPhotoWrapper = s.div`
 
 const MemberPhoto = s.img`
   max-width: 100%;
-  height: 14rem;
-  width: 17rem;
   display: block;
   object-fit: cover;
 `

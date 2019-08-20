@@ -21,7 +21,7 @@ const IndexPage = () => (
     <ParallaxProvider>
       <Parallax y={[-40, 40]}>
         <Section centerHorizontally centerVertically>
-          <HatImage src={hat} alt="Hat" />
+          <HatImage className="animated fadeInDown" src={hat} alt="Hat" />
         </Section>
       </Parallax>
 

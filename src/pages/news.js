@@ -6,6 +6,7 @@ import SEO from '../components/seo'
 
 import { Container, Section } from '../components'
 import { YELLOW } from '../shared/colors'
+import './animate.css'
 
 const NewsHeader = s.h1`
     font-size: 12vh;
@@ -17,7 +18,7 @@ const NewsPage = () => (
     <SEO title="News" />
     <Section centerVertically>
       <Container>
-        <NewsHeader>
+        <NewsHeader className="animated fadeInDown">
           in the news
         </NewsHeader>
       </Container>
