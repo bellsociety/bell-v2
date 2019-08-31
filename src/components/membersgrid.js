@@ -1,9 +1,10 @@
 import React, { Component } from "react"
 import PropTypes from "prop-types"
+import { StaticQuery, graphql } from "gatsby"
 import s from "styled-components"
 
-import Member from "../components/member"
-import MembersFilter from "../components/membersfilter"
+import Member from "./Member"
+import MembersFilter from "./membersfilter"
 import bellPic from "../images/bell.jpg"
 
 const MembersContainer = s.div`
@@ -14,62 +15,79 @@ const MembersContainer = s.div`
   `
 
 class MembersGrid extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { filter: "everyone" }
-    this.toggleFilter = this.toggleFilter.bind(this)
-  }
+    constructor(props) {
+        super(props)
+        this.state = { filter: "everyone" }
+        this.toggleFilter = this.toggleFilter.bind(this)
+    }
 
-  toggleFilter(selectedFilter) {
-    const { filter } = this.state
-    this.setState({ filter: selectedFilter || filter })
-  }
+    toggleFilter(selectedFilter) {
+        const { filter } = this.state
+        this.setState({ filter: selectedFilter || filter })
+    }
 
-  render() {
-    const { filter } = this.state
+    render() {
+        const { filter } = this.state
 
-    return (
-      <>
-        <MembersFilter filter={filter}></MembersFilter>
-        <MembersContainer>
-          <Member
-            memberPhoto={bellPic}
-            memberName="Alex Bell"
-            memberTag="eyes wide open"
-          ></Member>
-          <Member
-            memberPhoto={bellPic}
-            memberName="Alex Bell"
-            memberTag="eyes wide open"
-          ></Member>
-          <Member
-            memberPhoto={bellPic}
-            memberName="Alex Bell"
-            memberTag="eyes wide open"
-          ></Member>
-          <Member
-            memberPhoto={bellPic}
-            memberName="Alex Bell"
-            memberTag="eyes wide open"
-          ></Member>
-          <Member
-            memberPhoto={bellPic}
-            memberName="Alex Bell"
-            memberTag="eyes wide open"
-          ></Member>
-          <Member
-            memberPhoto={bellPic}
-            memberName="Alex Bell"
-            memberTag="eyes wide open"
-          ></Member>
-        </MembersContainer>
-      </>
-    )
-  }
+        return (
+            <StaticQuery
+                query={graphql`
+                    query MembersQuery {
+                        allMembersJson {
+                            edges {
+                                node {
+                                    name
+                                    year
+                                    boardPosition
+                                    dribbble
+                                    email
+                                    facebook
+                                    github
+                                    headshotJpgUrl
+                                    id
+                                    linkedin
+                                    personalSite
+                                    tagline
+                                    twitter
+                                }
+                            }
+                        }
+                    }
+                `}
+                render={data => {
+                    const members = data.allMembersJson.edges.map(
+                        ({ node }) => node
+                    )
+
+                    return (
+                        <>
+                            <MembersFilter filter={filter} />
+                            <MembersContainer>
+                                <Member
+                                    headshotJpgUrl={bellPic}
+                                    name="Alex Bell"
+                                    tagline="eyes wide open"
+                                />
+                                {members
+                                    .filter(({ year }) => year === "2020")
+                                    .map(member => (
+                                        <Member key={member.id} {...member} />
+                                    ))}
+                            </MembersContainer>
+                        </>
+                    )
+                }}
+            />
+        )
+    }
 }
 
 MembersGrid.propTypes = {
-  filter: PropTypes.string.isRequired,
+    filter: PropTypes.string,
+}
+
+MembersGrid.defaultProps = {
+    filter: "",
 }
 
 export default MembersGrid

@@ -5,26 +5,28 @@ import s from "styled-components"
 import { BLACK, GRAY } from "../shared/colors"
 
 const Wrapper = s.div`
-  width: 24%;
-  min-width: 200px;
-  margin-left: 0px;
-  margin-top: 0px;
-  padding-right: 20px;
+    width: 24%;
+    margin-left: 0px;
+    margin-top: 0px;
+    padding-right: 20px;
 `
 
 const MemberPhotoWrapper = s.div`
-  max-width: 100%;
-  height: auto;
-  width: 100%;
-  display: block;
-  object-fit: cover;
-  margin-bottom: 0.5rem;
+    height: auto;
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    margin-bottom: 0.5rem;
 `
 
-const MemberPhoto = s.img`
-  max-width: 100%;
-  display: block;
-  object-fit: cover;
+const MemberPhoto = s.div`
+    width: 100%;
+    height: auto;
+    display: block;
+    padding-top: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 `
 
 const Name = s.h1`
@@ -40,24 +42,35 @@ const Tagline = s.p`
     font-size: .8rem;
 `
 
-const Member = ({ memberPhoto, memberName, memberTag }) => (
-  <Wrapper>
+const MemberImage = ({ url }) => (
     <MemberPhotoWrapper>
-      <MemberPhoto src={memberPhoto} alt={memberName} />
+        {url && (
+            <MemberPhoto
+                style={{
+                    backgroundImage: `url(${url})`,
+                }}
+            />
+        )}
     </MemberPhotoWrapper>
-    <Name>{memberName}</Name>
-    <Tagline>{memberTag}</Tagline>
-  </Wrapper>
+)
+
+const Member = ({ headshotJpgUrl, name, tagline }) => (
+    <Wrapper>
+        <MemberImage url={headshotJpgUrl} />
+        <Name>{name}</Name>
+        <Tagline>{tagline}</Tagline>
+    </Wrapper>
 )
 
 Member.propTypes = {
-  memberName: PropTypes.string,
-  memberTag: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    tagline: PropTypes.string,
+    headshotJpgUrl: PropTypes.string,
 }
 
 Member.defaultProps = {
-  memberName: "",
-  memberTag: "",
+    tagline: "",
+    headshotJpgUrl: "",
 }
 
 export default Member

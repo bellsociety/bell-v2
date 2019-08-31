@@ -4,7 +4,8 @@ const { google } = require("googleapis")
 
 const { GOOGLE_MEMBER_SPREADSHEET_ID } = process.env
 const VERSION = "v4"
-const JSON_FILE_PATH = "data/members.json"
+const JSON_FILE_PATH = "src/data/members.json"
+const IMAGE_LABEL = "headshotJpgUrl"
 
 if (!GOOGLE_MEMBER_SPREADSHEET_ID) {
     throw new Error("GOOGLE_MEMBER_SPREADSHEET_ID not in env")
@@ -103,6 +104,19 @@ async function fetchSheetNames(sheets) {
         )
 }
 
+function cleanImgUrl(url = "") {
+    if (!url) return ""
+    if (url.startsWith("https://imgur.com/a/")) {
+        const imgurId = url.substring(20).split("/")[0]
+        return `https://i.imgur.com/${imgurId}.jpg`
+    } else if (url.startsWith("https://imgur.com/")) {
+        const imgurId = url.substring(18).split("/")[0]
+        return `https://i.imgur.com/${imgurId}.jpg`
+    }
+
+    return url
+}
+
 async function fetchDataForSheet(sheets, name) {
     console.log("Fetching data for sheet:", name)
     return sheets.spreadsheets.values
@@ -131,7 +145,11 @@ async function fetchDataForSheet(sheets, name) {
                     const obj = {}
                     arr.forEach((item, idx) => {
                         const label = cols[idx]
-                        obj[label] = item
+                        if (label === IMAGE_LABEL) {
+                            obj[label] = cleanImgUrl(item)
+                        } else {
+                            obj[label] = item
+                        }
                     })
                     return obj
                 })
