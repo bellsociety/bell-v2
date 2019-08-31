@@ -1,6 +1,6 @@
 {
-  "name": "bellseniorsociety",
-  "private": true,
+  "name": "bellsociety.com",
+  "private": false,
   "description": "We are a tech and entrepreneurship senior society at the University of Pennsylvania",
   "version": "0.1.0",
   "author": "Bell Senior Society <cameroncabo@gmail.com>",
@@ -26,7 +26,10 @@
     "prettier": "^1.18.2"
   },
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "upenn",
+    "tech",
+    "entrepreneurship"
   ],
   "license": "MIT",
   "scripts": {

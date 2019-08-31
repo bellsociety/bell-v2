@@ -1,12 +1,12 @@
-import React from 'react'
-import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
-import s from 'styled-components'
+import React from "react"
+import { ParallaxProvider, Parallax } from "react-scroll-parallax"
+import s from "styled-components"
 
-import Layout from '../components/layout'
-import SEO from '../components/seo'
+import Layout from "../components/layout"
+import SEO from "../components/seo"
 
-import { Container, Section } from '../components'
-import hat from '../images/hat.gif'
+import { Container, Section } from "../components"
+import hat from "../images/hat.gif"
 
 const HatImage = s.img`
   max-width: 100%;
@@ -28,10 +28,14 @@ const IndexPage = () => (
       <Section>
         <Container>
           <Parallax y={[-20, 20]}>
-          <h1>We are a tech and entrepreneurship society at the University of Pennsylvania</h1>
+            <h1>
+              We are a tech and entrepreneurship society at the University of
+              Pennsylvania
+            </h1>
           </Parallax>
           <h2>
-            Founded in 2014, Bell brings together a diverse group of Penn seniors and promotes the exchange of ideas and shared experiences.
+            Founded in 2014, Bell brings together a diverse group of Penn
+            seniors and promotes the exchange of ideas and shared experiences.
           </h2>
         </Container>
       </Section>

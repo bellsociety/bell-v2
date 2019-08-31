@@ -1,10 +1,8 @@
-import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
-import s from 'styled-components'
+import s from "styled-components"
 
-import { WHITE, BLACK, GRAY, RED, BLUE } from '../shared/colors'
-import { Container } from './Container'
+import { BLACK, GRAY } from "../shared/colors"
 
 const Wrapper = s.div`
   width: 24%;
@@ -45,7 +43,7 @@ const Tagline = s.p`
 const Member = ({ memberPhoto, memberName, memberTag }) => (
   <Wrapper>
     <MemberPhotoWrapper>
-    <MemberPhoto src={memberPhoto} alt={memberName}></MemberPhoto>
+      <MemberPhoto src={memberPhoto} alt={memberName} />
     </MemberPhotoWrapper>
     <Name>{memberName}</Name>
     <Tagline>{memberTag}</Tagline>

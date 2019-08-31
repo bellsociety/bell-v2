@@ -2,19 +2,19 @@ import React from 'react'
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
 import s from 'styled-components'
 
-import Layout from '../components/layout'
-import SEO from '../components/seo'
-import MembersGrid from '../components/membersgrid'
+import Layout from "../components/layout"
+import SEO from "../components/seo"
+import MembersGrid from "../components/membersgrid"
 
-import { Container, Section } from '../components'
+import { Container, Section } from "../components"
 
-import { BLUE } from '../shared/colors'
-import './animate.css'
+import { BLUE } from "../shared/colors"
+import "./animate.css"
 
 const MembersHeader = s.h1`
-    font-size: 12vh;
-    color: ${BLUE};
-  `
+  font-size: 12vh;
+  color: ${BLUE};
+`
 
 const MembersPage = () => (
   <Layout>
