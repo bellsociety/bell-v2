@@ -1,5 +1,6 @@
-import React from "react"
-import s from "styled-components"
+import React from 'react'
+import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
+import s from 'styled-components'
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -18,14 +19,20 @@ const MembersHeader = s.h1`
 const MembersPage = () => (
   <Layout>
     <SEO title="Members" />
-    <Section centerVertically>
-      <Container>
-        <MembersHeader className="animated fadeInDown">members</MembersHeader>
-      </Container>
-    </Section>
-    <Section>
-      <MembersGrid></MembersGrid>
-    </Section>
+    <ParallaxProvider>
+     <Parallax y={[-40, 40]}>
+      <Section centerVertically>
+        <Container>
+          <MembersHeader className="animated fadeInDown">members</MembersHeader>
+        </Container>
+      </Section>
+    </Parallax>
+    <Parallax y={[-20, 20]}>
+      <Section>
+        <MembersGrid></MembersGrid>
+      </Section>
+    </Parallax>
+    </ParallaxProvider>
   </Layout>
 )
 
