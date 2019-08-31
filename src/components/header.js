@@ -1,10 +1,10 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
-import s from 'styled-components'
+import s from "styled-components"
 
-import { BLACK } from '../shared/colors'
-import { Container } from './Container'
+import { BLACK } from "../shared/colors"
+import { Container } from "./Container"
 
 const Wrapper = s.div`
   width: 100%;
@@ -25,9 +25,7 @@ const Header = ({ siteTitle }) => (
     <Container>
       <Wrapper>
         <Title style={{ margin: 0 }}>
-          <Link to="/">
-            {siteTitle}
-          </Link>
+          <Link to="/">{siteTitle}</Link>
         </Title>
       </Wrapper>
     </Container>
@@ -39,7 +37,7 @@ Header.propTypes = {
 }
 
 Header.defaultProps = {
-  siteTitle: `bell`,
+  siteTitle: "bell",
 }
 
 export default Header

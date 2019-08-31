@@ -1,6 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import s from 'styled-components'
+import React from "react"
+import PropTypes from "prop-types"
+import s from "styled-components"
 
 const ContainerWrapper = s.div`
     width: 100%;
@@ -8,16 +8,14 @@ const ContainerWrapper = s.div`
 `
 
 export const Container = ({ children }) => (
-    <ContainerWrapper>
-        {children}
-    </ContainerWrapper>
+  <ContainerWrapper>{children}</ContainerWrapper>
 )
 
 Container.propTypes = {
-    children: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.node),
-        PropTypes.node
-    ])
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
 }
 
 const SectionWrapper = s.div`
@@ -27,32 +25,39 @@ const SectionWrapper = s.div`
     flex-direction: column;
     padding-left: 80px;
 
-    ${({ centerHorizontally }) => centerHorizontally && `
+    ${({ centerHorizontally }) =>
+      centerHorizontally &&
+      `
         text-align: center;
         align-items: center;
     `}
 
-    ${({ centerVertically }) => centerVertically && `
+    ${({ centerVertically }) =>
+      centerVertically &&
+      `
         justify-content: center;
     `}
 `
 
 export const Section = ({ centerHorizontally, centerVertically, children }) => (
-    <SectionWrapper centerHorizontally={centerHorizontally} centerVertically={centerVertically}>
-        {children}
-    </SectionWrapper>
+  <SectionWrapper
+    centerHorizontally={centerHorizontally}
+    centerVertically={centerVertically}
+  >
+    {children}
+  </SectionWrapper>
 )
 
 Section.propTypes = {
-    centerHorizontally: PropTypes.bool,
-    centerVertically: PropTypes.bool,
-    children: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.node),
-        PropTypes.node
-    ])
+  centerHorizontally: PropTypes.bool,
+  centerVertically: PropTypes.bool,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
 }
 
 Section.defaultProps = {
-    centerHorizontally: false,
-    centerVertically: false,
+  centerHorizontally: false,
+  centerVertically: false,
 }

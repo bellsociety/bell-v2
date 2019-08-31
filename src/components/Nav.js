@@ -1,9 +1,9 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import s from 'styled-components'
-import { Link } from 'gatsby'
+import React from "react"
+import PropTypes from "prop-types"
+import s from "styled-components"
+import { Link } from "gatsby"
 
-import { BLACK, WHITE, RED, BLUE, YELLOW } from '../shared/colors'
+import { BLACK, WHITE, RED, BLUE, YELLOW } from "../shared/colors"
 
 const Bars = s.div`
     width: 30px;
@@ -37,7 +37,9 @@ const Menu = s.div`
     opacity: 0;
     transition: all 0.5s ease;
 
-    ${({ show }) => show && `
+    ${({ show }) =>
+      show &&
+      `
         opacity: 1;
         max-width: 100vw;
         transform: scale(1);
@@ -77,30 +79,36 @@ const MenuContent = s.div`
 `
 
 const Nav = ({ show, toggle }) => (
-    <>
-        <Bars onClick={toggle}>
-            <Bar />
-            <Bar />
-            <Bar />
-        </Bars>
+  <>
+    <Bars onClick={toggle}>
+      <Bar />
+      <Bar />
+      <Bar />
+    </Bars>
 
-        <Menu show={show}>
-            <MenuContent>
-                <Link id="about" to="/">about</Link>
-                <Link id="members" to="/members">members</Link>
-                <Link id="news" to="/news">in the news</Link>
-            </MenuContent>
-        </Menu>
-    </>
+    <Menu show={show}>
+      <MenuContent>
+        <Link id="about" to="/">
+          about
+        </Link>
+        <Link id="members" to="/members">
+          members
+        </Link>
+        <Link id="news" to="/news">
+          in the news
+        </Link>
+      </MenuContent>
+    </Menu>
+  </>
 )
 
 Nav.propTypes = {
-    show: PropTypes.bool,
-    toggle: PropTypes.func.isRequired,
+  show: PropTypes.bool,
+  toggle: PropTypes.func.isRequired,
 }
 
 Nav.defaultProps = {
-    show: false,
+  show: false,
 }
 
 export default Nav

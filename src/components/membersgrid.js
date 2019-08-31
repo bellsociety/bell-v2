@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import s from 'styled-components'
+import React, { Component } from "react"
+import PropTypes from "prop-types"
+import s from "styled-components"
 
-import Member from '../components/member'
-import MembersFilter from '../components/membersfilter'
-import bellPic from '../images/bell.jpg'
+import Member from "../components/member"
+import MembersFilter from "../components/membersfilter"
+import bellPic from "../images/bell.jpg"
 
 const MembersContainer = s.div`
     display: flex;
@@ -32,12 +32,36 @@ class MembersGrid extends Component {
       <>
         <MembersFilter filter={filter}></MembersFilter>
         <MembersContainer>
-          <Member memberPhoto={bellPic} memberName="Alex Bell" memberTag="eyes wide open"></Member>
-          <Member memberPhoto={bellPic} memberName="Alex Bell" memberTag="eyes wide open"></Member>
-          <Member memberPhoto={bellPic} memberName="Alex Bell" memberTag="eyes wide open"></Member>
-          <Member memberPhoto={bellPic} memberName="Alex Bell" memberTag="eyes wide open"></Member>
-          <Member memberPhoto={bellPic} memberName="Alex Bell" memberTag="eyes wide open"></Member>
-          <Member memberPhoto={bellPic} memberName="Alex Bell" memberTag="eyes wide open"></Member>
+          <Member
+            memberPhoto={bellPic}
+            memberName="Alex Bell"
+            memberTag="eyes wide open"
+          ></Member>
+          <Member
+            memberPhoto={bellPic}
+            memberName="Alex Bell"
+            memberTag="eyes wide open"
+          ></Member>
+          <Member
+            memberPhoto={bellPic}
+            memberName="Alex Bell"
+            memberTag="eyes wide open"
+          ></Member>
+          <Member
+            memberPhoto={bellPic}
+            memberName="Alex Bell"
+            memberTag="eyes wide open"
+          ></Member>
+          <Member
+            memberPhoto={bellPic}
+            memberName="Alex Bell"
+            memberTag="eyes wide open"
+          ></Member>
+          <Member
+            memberPhoto={bellPic}
+            memberName="Alex Bell"
+            memberTag="eyes wide open"
+          ></Member>
         </MembersContainer>
       </>
     )

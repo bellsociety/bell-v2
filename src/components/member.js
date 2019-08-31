@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types'
-import React from 'react'
-import s from 'styled-components'
+import PropTypes from "prop-types"
+import React from "react"
+import s from "styled-components"
 
-import { BLACK, GRAY } from '../shared/colors'
+import { BLACK, GRAY } from "../shared/colors"
 
 const Wrapper = s.div`
   width: 24%;
@@ -56,8 +56,8 @@ Member.propTypes = {
 }
 
 Member.defaultProps = {
-  memberName: '',
-  memberTag: '',
+  memberName: "",
+  memberTag: "",
 }
 
 export default Member

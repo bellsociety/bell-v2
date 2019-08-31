@@ -5,15 +5,15 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import s from 'styled-components'
+import React, { Component } from "react"
+import PropTypes from "prop-types"
+import s from "styled-components"
 
-import Header from './Header'
-import Footer from './Footer'
-import Nav from './Nav'
+import Header from "./Header"
+import Footer from "./Footer"
+import Nav from "./Nav"
 
-import './layout.css'
+import "./layout.css" // This injects the CSS into the doc
 
 const ContentWrapper = s.div`
   min-height: 100vh;
@@ -40,17 +40,12 @@ class Layout extends Component {
 
     return (
       <>
+        <Nav show={showNav} toggle={this.toggleNav} />
         <ContentWrapper>
           <Header />
-
           <main>{children}</main>
         </ContentWrapper>
-
-        <Nav show={showNav} toggle={this.toggleNav} />
-
         <Footer />
-
-        <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet"></link>
       </>
     )
   }

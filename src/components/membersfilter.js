@@ -1,8 +1,8 @@
 import React, { Component } from "react"
 import PropTypes from "prop-types"
-import s from 'styled-components'
+import s from "styled-components"
 
-import { GRAY, BLACK } from '../shared/colors'
+import { GRAY, BLACK } from "../shared/colors"
 
 const Wrapper = s.div`
   width: 100%;
@@ -70,17 +70,17 @@ const selectedYear = {
 }
 
 const showYear = {
-  opacity: 1
+  opacity: 1,
 }
 
 const hideYear = {
-  opacity: 0
+  opacity: 0,
 }
 
 class MembersFilter extends Component {
   constructor(props) {
-    super(props);
-    this.state = { filter: "everyone", classYear: "2019" };
+    super(props)
+    this.state = { filter: "everyone", classYear: "2019" }
   }
 
   selectFilter(selectedFilter) {
@@ -96,26 +96,78 @@ class MembersFilter extends Component {
 
     return (
       <Wrapper>
-        <Filter><FilterCircle style={filter === "everyone" ? selectedCircle : {}} onClick={this.selectFilter.bind(this, "everyone")}></FilterCircle><FilterLabel>everyone</FilterLabel></Filter>
-        <Filter><FilterCircle style={filter === "honorary" ? selectedCircle : {}} onClick={this.selectFilter.bind(this, "honorary")}></FilterCircle><FilterLabel>honorary</FilterLabel></Filter>
-        <Filter><FilterCircle style={filter === "current board" ? selectedCircle : {}} onClick={this.selectFilter.bind(this, "current board")}></FilterCircle><FilterLabel>current board</FilterLabel></Filter>
-        <Filter><FilterCircle style={filter === "by class" ? selectedCircle : {}} onClick={this.selectFilter.bind(this, "by class")}></FilterCircle><FilterLabel>by class</FilterLabel></Filter>
+        <Filter>
+          <FilterCircle
+            style={filter === "everyone" ? selectedCircle : {}}
+            onClick={this.selectFilter.bind(this, "everyone")}
+          ></FilterCircle>
+          <FilterLabel>everyone</FilterLabel>
+        </Filter>
+        <Filter>
+          <FilterCircle
+            style={filter === "honorary" ? selectedCircle : {}}
+            onClick={this.selectFilter.bind(this, "honorary")}
+          ></FilterCircle>
+          <FilterLabel>honorary</FilterLabel>
+        </Filter>
+        <Filter>
+          <FilterCircle
+            style={filter === "current board" ? selectedCircle : {}}
+            onClick={this.selectFilter.bind(this, "current board")}
+          ></FilterCircle>
+          <FilterLabel>current board</FilterLabel>
+        </Filter>
+        <Filter>
+          <FilterCircle
+            style={filter === "by class" ? selectedCircle : {}}
+            onClick={this.selectFilter.bind(this, "by class")}
+          ></FilterCircle>
+          <FilterLabel>by class</FilterLabel>
+        </Filter>
         <YearFilter style={filter === "by class" ? showYear : hideYear}>
           <YearCarousel style={classYear === "2014" ? {} : {}}>
-            <Year style={classYear === "2014" ? selectedYear : {}} onClick={this.selectClass.bind(this, "2014")}>2014</Year>
-            <Year style={classYear === "2015" ? selectedYear : {}} onClick={this.selectClass.bind(this, "2015")}>2015</Year>
-            <Year style={classYear === "2016" ? selectedYear : {}} onClick={this.selectClass.bind(this, "2016")}>2016</Year>
-            <Year style={classYear === "2017" ? selectedYear : {}} onClick={this.selectClass.bind(this, "2017")}>2017</Year>
-            <Year style={classYear === "2018" ? selectedYear : {}} onClick={this.selectClass.bind(this, "2018")}>2018</Year>
-            <Year style={classYear === "2019" ? selectedYear : {}} onClick={this.selectClass.bind(this, "2019")}>2019</Year>
+            <Year
+              style={classYear === "2014" ? selectedYear : {}}
+              onClick={this.selectClass.bind(this, "2014")}
+            >
+              2014
+            </Year>
+            <Year
+              style={classYear === "2015" ? selectedYear : {}}
+              onClick={this.selectClass.bind(this, "2015")}
+            >
+              2015
+            </Year>
+            <Year
+              style={classYear === "2016" ? selectedYear : {}}
+              onClick={this.selectClass.bind(this, "2016")}
+            >
+              2016
+            </Year>
+            <Year
+              style={classYear === "2017" ? selectedYear : {}}
+              onClick={this.selectClass.bind(this, "2017")}
+            >
+              2017
+            </Year>
+            <Year
+              style={classYear === "2018" ? selectedYear : {}}
+              onClick={this.selectClass.bind(this, "2018")}
+            >
+              2018
+            </Year>
+            <Year
+              style={classYear === "2019" ? selectedYear : {}}
+              onClick={this.selectClass.bind(this, "2019")}
+            >
+              2019
+            </Year>
           </YearCarousel>
         </YearFilter>
       </Wrapper>
     )
-
   }
 }
-
 
 MembersFilter.propTypes = {
   filter: PropTypes.string.isRequired,
