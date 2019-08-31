@@ -9,7 +9,10 @@ import { Container } from "./Container"
 const Wrapper = s.div`
   width: 100%;
   position: absolute;
-  padding: 2rem 0;
+  padding: 2rem 1rem;
+  top: 0;
+  left: 0;
+  z-index: 1;
 `
 
 const Title = s.h1`
@@ -21,23 +24,23 @@ const Title = s.h1`
 `
 
 const Header = ({ siteTitle }) => (
-  <header>
-    <Container>
-      <Wrapper>
-        <Title style={{ margin: 0 }}>
-          <Link to="/">{siteTitle}</Link>
-        </Title>
-      </Wrapper>
-    </Container>
-  </header>
+    <header>
+        <Container>
+            <Wrapper>
+                <Title style={{ margin: 0 }}>
+                    <Link to="/">{siteTitle}</Link>
+                </Title>
+            </Wrapper>
+        </Container>
+    </header>
 )
 
 Header.propTypes = {
-  siteTitle: PropTypes.string,
+    siteTitle: PropTypes.string,
 }
 
 Header.defaultProps = {
-  siteTitle: "bell",
+    siteTitle: "bell",
 }
 
 export default Header
