@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import React from "react"
 import s from 'styled-components'
 
-import { WHITE, BLACK } from '../shared/colors'
+import { BLACK } from '../shared/colors'
 import { Container } from './Container'
 
 const Wrapper = s.div`

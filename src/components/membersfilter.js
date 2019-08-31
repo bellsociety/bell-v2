@@ -2,8 +2,7 @@ import React, { Component } from "react"
 import PropTypes from "prop-types"
 import s from 'styled-components'
 
-import { WHITE, BLACK, GRAY, RED } from '../shared/colors'
-import { Container } from './Container'
+import { GRAY, BLACK } from '../shared/colors'
 
 const Wrapper = s.div`
   width: 100%;
@@ -67,7 +66,7 @@ const Year = s.p`
 `
 
 const selectedYear = {
-  color: "#000000",
+  color: BLACK,
 }
 
 const showYear = {
@@ -78,10 +77,6 @@ const hideYear = {
   opacity: 0
 }
 
-const moveRight = {
-  left: "2rem",
-}
-
 class MembersFilter extends Component {
   constructor(props) {
     super(props);
@@ -89,18 +84,15 @@ class MembersFilter extends Component {
   }
 
   selectFilter(selectedFilter) {
-    const { filter } = this.state;
     this.setState({ filter: selectedFilter })
   }
 
   selectClass(selectedClass) {
-    const { classYear } = this.state;
     this.setState({ classYear: selectedClass })
   }
 
   render() {
-    const { filter, classYear } = this.state;
-    let yearFilter;
+    const { filter, classYear } = this.state
 
     return (
       <Wrapper>

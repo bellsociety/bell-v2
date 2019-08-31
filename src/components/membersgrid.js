@@ -6,11 +6,6 @@ import Member from '../components/member'
 import MembersFilter from '../components/membersfilter'
 import bellPic from '../images/bell.jpg'
 
-const MembersNav = s.div`
-    display: flex;
-    flex-flow: row wrap;
-  `
-
 const MembersContainer = s.div`
     display: flex;
     flex-flow: row wrap;
@@ -20,18 +15,18 @@ const MembersContainer = s.div`
 
 class MembersGrid extends Component {
   constructor(props) {
-    super(props);
-    this.state = { filter: "everyone" };
+    super(props)
+    this.state = { filter: "everyone" }
     this.toggleFilter = this.toggleFilter.bind(this)
   }
 
   toggleFilter(selectedFilter) {
     const { filter } = this.state
-    this.setState({ filter: selectedFilter })
+    this.setState({ filter: selectedFilter || filter })
   }
 
   render() {
-    const { filter } = this.state;
+    const { filter } = this.state
 
     return (
       <>
