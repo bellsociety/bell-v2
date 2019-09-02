@@ -1,4 +1,6 @@
 const fs = require("fs")
+var mkdirp = require('mkdirp');
+var getDirName = require('path').dirname;
 const readline = require("readline")
 const { google } = require("googleapis")
 
@@ -91,7 +93,6 @@ async function fetchSheetNames(sheets) {
         })
         .then(
             function(response) {
-                // console.log("response", response)
                 const { sheets: sheetData } = response.data
                 const sheetNames = sheetData.map(
                     ({ properties }) => properties.title
@@ -162,11 +163,14 @@ async function fetchDataForSheet(sheets, name) {
 
 async function writeData(data) {
     const json = JSON.stringify(data)
-    return fs.writeFile(JSON_FILE_PATH, json, err => {
-        if (err) throw new Error(err.message)
-        console.log("Successfully wrote JSON to file")
-        return
-    })
+    return mkdirp(getDirName(JSON_FILE_PATH), function (err) {
+        if (err) return cb(err);
+        fs.writeFile(JSON_FILE_PATH, json, err => {
+            if (err) throw new Error(err.message)
+            console.log("Successfully wrote JSON to file")
+            return
+        });
+    });
 }
 
 /**

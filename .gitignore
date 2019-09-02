@@ -72,3 +72,4 @@ yarn-error.log
 credentials.json
 env.sh
 data
+token.json

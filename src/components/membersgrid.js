@@ -63,11 +63,6 @@ class MembersGrid extends Component {
                         <>
                             <MembersFilter filter={filter} />
                             <MembersContainer>
-                                <Member
-                                    headshotJpgUrl={bellPic}
-                                    name="Alex Bell"
-                                    tagline="eyes wide open"
-                                />
                                 {members
                                     .filter(({ year }) => year === "2020")
                                     .map(member => (
