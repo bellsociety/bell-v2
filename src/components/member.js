@@ -17,11 +17,37 @@ const MemberPhotoWrapper = s.div`
     display: block;
     object-fit: cover;
     margin-bottom: 0.5rem;
+    position: relative;
+`
+
+const MemberDetails = s.div`
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    color: white;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 2rem;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    line-height: 0.3rem;
+    font-size: .8rem;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    a{
+
+        color: white;
+    }
 `
 
 const MemberPhoto = s.div`
-    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%) contrast(95%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%) contrast(95%);
     width: 100%;
     height: auto;
     display: block;
@@ -44,7 +70,7 @@ const Tagline = s.p`
     font-size: .8rem;
 `
 
-const MemberImage = ({ url }) => (
+const MemberImage = ({ url, boardPosition, dribbble, email, facebook, github, linkedin, twitter, website}) => (
     <MemberPhotoWrapper>
         {url && (
             <MemberPhoto
@@ -53,12 +79,38 @@ const MemberImage = ({ url }) => (
                 }}
             />
         )}
+        <MemberDetails>
+            {boardPosition && (
+                <p><b><i>{boardPosition}</i></b></p>
+            )}
+            {email && (
+                <p><a target="_blank" rel="noopener noreferrer" href={email}><i>email </i></a></p>
+            )}
+            {linkedin && (
+                <p><a target="_blank" rel="noopener noreferrer" href={linkedin}><i>Linkedin </i></a></p>
+            )}
+            {github && (
+                <p><a target="_blank" rel="noopener noreferrer" href={github}><i>Github </i></a></p>
+            )}
+            {website && (
+                <p><a target="_blank" rel="noopener noreferrer" href={website}><i>website </i></a></p>
+            )}
+            {dribbble && (
+                <p><a target="_blank" rel="noopener noreferrer" href={dribbble}><i>Dribbble </i></a></p>
+            )}
+            {facebook && (
+                <p><a target="_blank" rel="noopener noreferrer" href={facebook}><i>Facebook </i></a></p>
+            )}
+            {twitter && (
+                <p><a target="_blank" rel="noopener noreferrer" href={twitter}><i>Twitter </i></a></p>
+            )}
+        </MemberDetails>
     </MemberPhotoWrapper>
 )
 
-const Member = ({ headshotJpgUrl, name, tagline }) => (
+const Member = ({ headshotJpgUrl, name, tagline, boardPosition, dribbble, email, facebook, github, linkedin, twitter, website }) => (
     <Wrapper>
-        <MemberImage url={headshotJpgUrl} />
+        <MemberImage url={headshotJpgUrl} boardPosition={boardPosition} dribbble={dribbble} email={email} facebook={facebook} github={github} linkedin={linkedin} twitter={twitter} website={website}/>
         <Name>{name}</Name>
         <Tagline>{tagline}</Tagline>
     </Wrapper>
