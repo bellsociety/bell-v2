@@ -61,16 +61,25 @@ const Name = s.h1`
     color: ${BLACK};
     text-decoration: none !important;
     font-size: 1.25rem;
-    margin-bottom: 0rem;
+    margin-bottom: 0.3rem;
 `
 
 const Tagline = s.p`
     color: ${GRAY};
     text-decoration: none !important;
     font-size: .8rem;
+    line-height: 1rem;
 `
 
-const MemberImage = ({ url, boardPosition, dribbble, email, facebook, github, linkedin, twitter, website}) => (
+const BoardPosition = s.p`
+    color: ${BLACK};
+    text-decoration: none !important;
+    font-size: .7rem;
+    margin-bottom: 0rem;
+    text-transform: uppercase;
+`
+
+const MemberImage = ({ filter, url, boardPosition, dribbble, email, facebook, github, linkedin, twitter, website, year}) => (
     <MemberPhotoWrapper>
         {url && (
             <MemberPhoto
@@ -80,7 +89,10 @@ const MemberImage = ({ url, boardPosition, dribbble, email, facebook, github, li
             />
         )}
         <MemberDetails>
-            {boardPosition && (
+            {boardPosition && filter !== "current board" && year !== "2020" && (
+                <p><b><i>Former {boardPosition}</i></b></p>
+            )}
+            {boardPosition && filter !== "current board" && year === "2020" && (
                 <p><b><i>{boardPosition}</i></b></p>
             )}
             {email && (
@@ -108,9 +120,12 @@ const MemberImage = ({ url, boardPosition, dribbble, email, facebook, github, li
     </MemberPhotoWrapper>
 )
 
-const Member = ({ headshotJpgUrl, name, tagline, boardPosition, dribbble, email, facebook, github, linkedin, twitter, website }) => (
+const Member = ({ filter, headshotJpgUrl, name, tagline, boardPosition, dribbble, email, facebook, github, linkedin, twitter, website, year }) => (
     <Wrapper>
-        <MemberImage url={headshotJpgUrl} boardPosition={boardPosition} dribbble={dribbble} email={email} facebook={facebook} github={github} linkedin={linkedin} twitter={twitter} website={website}/>
+        <MemberImage filter={filter} url={headshotJpgUrl} boardPosition={boardPosition} dribbble={dribbble} email={email} facebook={facebook} github={github} linkedin={linkedin} twitter={twitter} website={website} year={year}/>
+        {filter === "current board" && (
+            <BoardPosition><b>{boardPosition}</b></BoardPosition>
+        )}
         <Name>{name}</Name>
         <Tagline>{tagline}</Tagline>
     </Wrapper>

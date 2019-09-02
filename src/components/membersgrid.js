@@ -5,7 +5,6 @@ import s from "styled-components"
 
 import Member from "./Member"
 import MembersFilter from "./membersfilter"
-import bellPic from "../images/bell.jpg"
 
 const MembersContainer = s.div`
     display: flex;
@@ -63,16 +62,31 @@ class MembersGrid extends Component {
                     const members = data.allMembersJson.edges.map(
                         ({ node }) => node
                     )
+                    let filteredMembers
+
+                    if (filter === "everyone") {
+                        filteredMembers = members
+                            .filter(({ year }) => year !== "honorary")
+                    } else if (filter === "honorary") {
+                        filteredMembers = members
+                            .filter(( { year }) => year === "honorary")
+                    } else if (filter === "current board") {
+                        filteredMembers = members
+                            .filter(( { year }) => year === "2020")
+                            .filter(( { boardPosition }) => boardPosition)
+                    } else if (filter === "by class") {
+                        filteredMembers = members
+                            .filter(( { year }) => year === yearFilter)
+                    }
 
                     return (
                         <>
                             <MembersFilter toggleFilter={this.toggleFilter} toggleYear={this.toggleYear} filter={filter} classYear={yearFilter} />
                             <MembersContainer>
-                                {members
-                                    .filter(({ year }) => year === yearFilter)
+                                {filteredMembers
                                     .map(member => (
-                                        <Member key={member.id} {...member} />
-                                    ))}
+                                        <Member key={member.id} filter={filter} {...member} />
+                                ))}
                             </MembersContainer>
                         </>
                     )
