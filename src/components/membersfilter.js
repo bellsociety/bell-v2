@@ -33,6 +33,7 @@ const FilterLabel = s.p`
   display: block;
   float: left;
   margin-left: 1rem;
+  font-size: .8rem;
 `
 
 const selectedCircle = {

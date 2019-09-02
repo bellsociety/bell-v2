@@ -57,7 +57,7 @@ const MemberPhoto = s.div`
     background-position: center;
 `
 
-const Name = s.h1`
+const Name = s.p`
     color: ${BLACK};
     text-decoration: none !important;
     font-size: 1.25rem;
