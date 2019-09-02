@@ -17,8 +17,9 @@ const MembersContainer = s.div`
 class MembersGrid extends Component {
     constructor(props) {
         super(props)
-        this.state = { filter: "everyone" }
+        this.state = { filter: "by class", yearFilter: "2020" }
         this.toggleFilter = this.toggleFilter.bind(this)
+        this.toggleYear = this.toggleYear.bind(this)
     }
 
     toggleFilter(selectedFilter) {
@@ -26,9 +27,13 @@ class MembersGrid extends Component {
         this.setState({ filter: selectedFilter || filter })
     }
 
-    render() {
-        const { filter } = this.state
+    toggleYear(selectedYear) {
+        const { yearFilter } = this.state
+        this.setState({ yearFilter: selectedYear || yearFilter })
+    }
 
+    render() {
+        const { filter, yearFilter } = this.state
         return (
             <StaticQuery
                 query={graphql`
@@ -61,10 +66,10 @@ class MembersGrid extends Component {
 
                     return (
                         <>
-                            <MembersFilter filter={filter} />
+                            <MembersFilter toggleFilter={this.toggleFilter} toggleYear={this.toggleYear} filter={filter} classYear={yearFilter} />
                             <MembersContainer>
                                 {members
-                                    .filter(({ year }) => year === "2020")
+                                    .filter(({ year }) => year === yearFilter)
                                     .map(member => (
                                         <Member key={member.id} {...member} />
                                     ))}
@@ -79,10 +84,12 @@ class MembersGrid extends Component {
 
 MembersGrid.propTypes = {
     filter: PropTypes.string,
+    yearFilter: PropTypes.string,
 }
 
 MembersGrid.defaultProps = {
-    filter: "",
+    filter: "by class",
+    yearFilter: "2020",
 }
 
 export default MembersGrid

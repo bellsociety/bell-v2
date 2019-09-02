@@ -20,6 +20,8 @@ const MemberPhotoWrapper = s.div`
 `
 
 const MemberPhoto = s.div`
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
     width: 100%;
     height: auto;
     display: block;
