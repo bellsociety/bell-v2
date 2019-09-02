@@ -35,8 +35,7 @@ export GOOGLE_MEMBER_SPREADSHEET_ID="..."
 To pull in member and news data, you need to get credentials from Google to use the API to pull in data from Google Sheets. Download a `credentials.json` file from [this site](https://developers.google.com/sheets/api/quickstart/nodejs) and place them in the root directory of this project. Follow the rest of the instructions on the site as well, being sure to authorize the application using the bellseniorsociety Google account. Then, run:
 
 ```
-yarn pull-member-data
-yarn pull-news-data
+yarn pull-sheets-data
 ```
 
 You may need to take some additional steps per the output of the program in your terminal.
