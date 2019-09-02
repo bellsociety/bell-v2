@@ -42,8 +42,7 @@
         "start": "npm run develop",
         "serve": "gatsby serve",
         "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
-        "pull-member-data": "source env.sh && node scripts/pull-member-data.js",
-        "pull-news-data": "source env.sh && node scripts/pull-news-data.js"
+        "pull-sheets-data": "source env.sh && node scripts/pull-sheets-data.js"
     },
     "repository": {
         "type": "git",

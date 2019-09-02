@@ -4,13 +4,18 @@ var getDirName = require('path').dirname;
 const readline = require("readline")
 const { google } = require("googleapis")
 
-const { GOOGLE_MEMBER_SPREADSHEET_ID } = process.env
+const { GOOGLE_MEMBER_SPREADSHEET_ID, GOOGLE_NEWS_SPREADSHEET_ID } = process.env
 const VERSION = "v4"
-const JSON_FILE_PATH = "src/data/members.json"
+const JSON_MEMBERS_FILE_PATH = "src/data/members.json"
+const JSON_NEWS_FILE_PATH = "src/data/news.json"
 const IMAGE_LABEL = "headshotJpgUrl"
 
 if (!GOOGLE_MEMBER_SPREADSHEET_ID) {
     throw new Error("GOOGLE_MEMBER_SPREADSHEET_ID not in env")
+}
+
+if (!GOOGLE_NEWS_SPREADSHEET_ID) {
+    throw new Error("GOOGLE_NEWS_SPREADSHEET_ID not in env")
 }
 
 // If modifying these scopes, delete token.json.
@@ -85,11 +90,11 @@ function getNewToken(oAuth2Client, callback) {
     })
 }
 
-async function fetchSheetNames(sheets) {
+async function fetchSheetNames(sheets, spreadsheet_id) {
     console.log("Fetching sheet names")
     return sheets.spreadsheets
         .get({
-            spreadsheetId: GOOGLE_MEMBER_SPREADSHEET_ID,
+            spreadsheetId: spreadsheet_id,
         })
         .then(
             function(response) {
@@ -118,11 +123,11 @@ function cleanImgUrl(url = "") {
     return url
 }
 
-async function fetchDataForSheet(sheets, name) {
+async function fetchDataForSheet(sheets, name, id) {
     console.log("Fetching data for sheet:", name)
     return sheets.spreadsheets.values
         .get({
-            spreadsheetId: GOOGLE_MEMBER_SPREADSHEET_ID,
+            spreadsheetId: id,
             range: `${name}`,
         })
         .then(
@@ -161,11 +166,11 @@ async function fetchDataForSheet(sheets, name) {
         )
 }
 
-async function writeData(data) {
+async function writeData(data, file_path) {
     const json = JSON.stringify(data)
-    return mkdirp(getDirName(JSON_FILE_PATH), function (err) {
+    return mkdirp(getDirName(file_path), function (err) {
         if (err) return cb(err);
-        fs.writeFile(JSON_FILE_PATH, json, err => {
+        fs.writeFile(file_path, json, err => {
             if (err) throw new Error(err.message)
             console.log("Successfully wrote JSON to file")
             return
@@ -179,15 +184,21 @@ async function writeData(data) {
 async function fetchAndWriteData(auth) {
     console.log("Pulling data from Google Sheets")
     const sheets = google.sheets({ version: VERSION, auth })
-    const sheetNames = await fetchSheetNames(sheets)
-    console.log("Sheet names:", sheetNames)
+    const memberSheetNames = await fetchSheetNames(sheets, GOOGLE_MEMBER_SPREADSHEET_ID)
+    const newsSheetNames = await fetchSheetNames(sheets, GOOGLE_NEWS_SPREADSHEET_ID)
+    console.log("Member sheet names:", memberSheetNames)
+    console.log("News sheet names:", newsSheetNames)
 
     // Pull the data for each sheet and flatten together the results
-    const data = (await Promise.all(
-        sheetNames.map(name => fetchDataForSheet(sheets, name))
+    const memberData = (await Promise.all(
+        memberSheetNames.map(name => fetchDataForSheet(sheets, name, GOOGLE_MEMBER_SPREADSHEET_ID))
+    )).reduce((newArr, aggArr) => aggArr.concat(newArr))
+    const newsData = (await Promise.all(
+        newsSheetNames.map(name => fetchDataForSheet(sheets, name, GOOGLE_NEWS_SPREADSHEET_ID))
     )).reduce((newArr, aggArr) => aggArr.concat(newArr))
     console.log("Finished pulling all data")
 
-    await writeData(data)
+    await writeData(memberData, JSON_MEMBERS_FILE_PATH)
+    await writeData(newsData, JSON_NEWS_FILE_PATH)
     return
 }
