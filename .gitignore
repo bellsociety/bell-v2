@@ -70,6 +70,10 @@ yarn-error.log
 
 # Google API tokens
 credentials.json
-env.sh
-data
 token.json
+
+# Other secrets
+env.sh
+
+# Downloaded data
+data

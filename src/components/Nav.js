@@ -40,8 +40,8 @@ const Menu = s.div`
     transition: all 0.5s ease;
 
     ${({ show }) =>
-        show &&
-        `
+      show &&
+      `
         opacity: 1;
         max-width: 100vw;
         transform: scale(1);
@@ -81,36 +81,36 @@ const MenuContent = s.div`
 `
 
 const Nav = ({ show, toggle }) => (
-    <>
-        <Bars onClick={toggle}>
-            <Bar />
-            <Bar />
-            <Bar />
-        </Bars>
+  <>
+    <Bars onClick={toggle}>
+      <Bar />
+      <Bar />
+      <Bar />
+    </Bars>
 
-        <Menu show={show}>
-            <MenuContent>
-                <Link id="about" to="/">
-                    about
-                </Link>
-                <Link id="members" to="/members">
-                    members
-                </Link>
-                <Link id="news" to="/news">
-                    in the news
-                </Link>
-            </MenuContent>
-        </Menu>
-    </>
+    <Menu show={show}>
+      <MenuContent>
+        <Link id="about" to="/">
+          about
+        </Link>
+        <Link id="members" to="/members">
+          members
+        </Link>
+        <Link id="news" to="/news">
+          in the news
+        </Link>
+      </MenuContent>
+    </Menu>
+  </>
 )
 
 Nav.propTypes = {
-    show: PropTypes.bool,
-    toggle: PropTypes.func.isRequired,
+  show: PropTypes.bool,
+  toggle: PropTypes.func.isRequired,
 }
 
 Nav.defaultProps = {
-    show: false,
+  show: false,
 }
 
 export default Nav

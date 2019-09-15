@@ -5,10 +5,7 @@ import s from "styled-components"
 
 import { BLACK, GRAY } from "../shared/colors"
 
-
-const NewsContainer = s.div`
-
-  `
+const NewsContainer = s.div``
 
 const NewsTitle = s.p`
     font-size: 1.25rem;
@@ -27,57 +24,63 @@ const NewsDescription = s.p`
   `
 
 class NewsList extends Component {
+  render() {
+    return (
+      <StaticQuery
+        query={graphql`
+          query NewsQuery {
+            allNewsJson {
+              edges {
+                node {
+                  title
+                  url
+                  name
+                  year
+                  id
+                }
+              }
+            }
+          }
+        `}
+        render={data => {
+          const news = data.allNewsJson.edges.map(({ node }) => node)
 
-    render() {
-        return (
-            <StaticQuery
-                query={graphql`
-                    query NewsQuery {
-                        allNewsJson {
-                            edges {
-                                node {
-                                    title
-                                    url
-                                    name
-                                    year
-                                    id
-                                }
-                            }
-                        }
-                    }
-                `}
-                render={data => {
-                    const news = data.allNewsJson.edges.map(
-                        ({ node }) => node
-                    )
-
-                    return (
-                        <>
-                            <NewsContainer>
-                                {news
-                                    .map(newsPiece => (
-                                        <div>
-                                            <NewsTitle key={newsPiece.id}><a target="_blank" href={newsPiece.url}>{newsPiece.title}</a></NewsTitle>
-                                            <NewsDescription key={newsPiece.id}>{newsPiece.name}, {newsPiece.year}</NewsDescription>
-                                        </div>
-                                ))}
-                            </NewsContainer>
-                        </>
-                    )
-                }}
-            />
-        )
-    }
+          return (
+            <>
+              <NewsContainer>
+                {news.map(newsPiece => (
+                  <div>
+                    <NewsTitle key={newsPiece.id}>
+                      <a
+                        target="_blank"
+                        href={newsPiece.url}
+                        rel="noopener noreferrer"
+                      >
+                        {newsPiece.title}
+                      </a>
+                    </NewsTitle>
+                    <NewsDescription key={newsPiece.id}>
+                      {newsPiece.name}, {newsPiece.year}
+                    </NewsDescription>
+                  </div>
+                ))}
+              </NewsContainer>
+            </>
+          )
+        }}
+      />
+    )
+  }
 }
 
 NewsList.propTypes = {
-    filter: PropTypes.string,
-    yearFilter: PropTypes.string,
+  filter: PropTypes.string,
+  yearFilter: PropTypes.string,
 }
 
 NewsList.defaultProps = {
-    filter: "by class",
-    yearFilter: "2020",
+  filter: "by class",
+  yearFilter: "2020",
 }
 
 export default NewsList

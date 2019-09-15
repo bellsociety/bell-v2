@@ -1,8 +1,8 @@
-import React, { Component } from "react"
-import PropTypes from "prop-types"
-import s from "styled-components"
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import s from 'styled-components'
 
-import { GRAY, BLACK } from "../shared/colors"
+import { GRAY, BLACK } from '../shared/colors'
 
 const Wrapper = s.div`
   width: 100%;
@@ -37,7 +37,7 @@ const FilterLabel = s.p`
 `
 
 const selectedCircle = {
-  backgroundColor: "#000000",
+  backgroundColor: '#000000',
 }
 
 const YearFilter = s.div`
@@ -79,10 +79,6 @@ const hideYear = {
 }
 
 class MembersFilter extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     const { filter, classYear } = this.props
 
@@ -90,73 +86,73 @@ class MembersFilter extends Component {
       <Wrapper>
         <Filter>
           <FilterCircle
-            style={filter === "everyone" ? selectedCircle : {}}
-            onClick={this.props.toggleFilter.bind(this, "everyone")}
-          ></FilterCircle>
+            style={filter === 'everyone' ? selectedCircle : {}}
+            onClick={this.props.toggleFilter.bind(this, 'everyone')}
+          />
           <FilterLabel>everyone</FilterLabel>
         </Filter>
         <Filter>
           <FilterCircle
-            style={filter === "honorary" ? selectedCircle : {}}
-            onClick={this.props.toggleFilter.bind(this, "honorary")}
-          ></FilterCircle>
+            style={filter === 'honorary' ? selectedCircle : {}}
+            onClick={this.props.toggleFilter.bind(this, 'honorary')}
+          />
           <FilterLabel>honorary</FilterLabel>
         </Filter>
         <Filter>
           <FilterCircle
-            style={filter === "current board" ? selectedCircle : {}}
-            onClick={this.props.toggleFilter.bind(this, "current board")}
-          ></FilterCircle>
+            style={filter === 'current board' ? selectedCircle : {}}
+            onClick={this.props.toggleFilter.bind(this, 'current board')}
+          />
           <FilterLabel>current board</FilterLabel>
         </Filter>
         <Filter>
           <FilterCircle
-            style={filter === "by class" ? selectedCircle : {}}
-            onClick={this.props.toggleFilter.bind(this, "by class")}
-          ></FilterCircle>
+            style={filter === 'by class' ? selectedCircle : {}}
+            onClick={this.props.toggleFilter.bind(this, 'by class')}
+          />
           <FilterLabel>by class</FilterLabel>
         </Filter>
-        <YearFilter style={filter === "by class" ? showYear : hideYear}>
-          <YearCarousel style={classYear === "2014" ? {} : {}}>
+        <YearFilter style={filter === 'by class' ? showYear : hideYear}>
+          <YearCarousel style={classYear === '2014' ? {} : {}}>
             <Year
-              style={classYear === "2014" ? selectedYear : {}}
-              onClick={this.props.toggleYear.bind(this, "2014")}
+              style={classYear === '2014' ? selectedYear : {}}
+              onClick={this.props.toggleYear.bind(this, '2014')}
             >
               2014
             </Year>
             <Year
-              style={classYear === "2015" ? selectedYear : {}}
-              onClick={this.props.toggleYear.bind(this, "2015")}
+              style={classYear === '2015' ? selectedYear : {}}
+              onClick={this.props.toggleYear.bind(this, '2015')}
             >
               2015
             </Year>
             <Year
-              style={classYear === "2016" ? selectedYear : {}}
-              onClick={this.props.toggleYear.bind(this, "2016")}
+              style={classYear === '2016' ? selectedYear : {}}
+              onClick={this.props.toggleYear.bind(this, '2016')}
             >
               2016
             </Year>
             <Year
-              style={classYear === "2017" ? selectedYear : {}}
-              onClick={this.props.toggleYear.bind(this, "2017")}
+              style={classYear === '2017' ? selectedYear : {}}
+              onClick={this.props.toggleYear.bind(this, '2017')}
             >
               2017
             </Year>
             <Year
-              style={classYear === "2018" ? selectedYear : {}}
-              onClick={this.props.toggleYear.bind(this, "2018")}
+              style={classYear === '2018' ? selectedYear : {}}
+              onClick={this.props.toggleYear.bind(this, '2018')}
             >
               2018
             </Year>
             <Year
-              style={classYear === "2019" ? selectedYear : {}}
-              onClick={this.props.toggleYear.bind(this, "2019")}
+              style={classYear === '2019' ? selectedYear : {}}
+              onClick={this.props.toggleYear.bind(this, '2019')}
             >
               2019
             </Year>
             <Year
-              style={classYear === "2020" ? selectedYear : {}}
-              onClick={this.props.toggleYear.bind(this, "2020")}
+              style={classYear === '2020' ? selectedYear : {}}
+              onClick={this.props.toggleYear.bind(this, '2020')}
             >
               2020
             </Year>
@@ -172,7 +168,6 @@ MembersFilter.propTypes = {
   classYear: PropTypes.string.isRequired,
 }
 
-MembersFilter.defaultProps = {
-}
+MembersFilter.defaultProps = {}
 
 export default MembersFilter
